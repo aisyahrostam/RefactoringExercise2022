@@ -25,10 +25,10 @@ public class Menu extends JFrame {
 
 	public static void main(String[] args) {
 		Menu driver = new Menu();
-		driver.menuStart();
+		driver.userTypeMenu();
 	}
 
-	public void menuStart() {
+	public void userTypeMenu() {
 
 		f = new JFrame("User Type");
 		f.setSize(400, 300);
@@ -139,7 +139,7 @@ public class Menu extends JFrame {
 									JOptionPane.showMessageDialog(f,
 											"CustomerID = " + CustomerID + "\n Password = " + password,
 											"Customer created.", JOptionPane.INFORMATION_MESSAGE);
-									menuStart();
+									userTypeMenu();
 									f.dispose();
 								}
 							});
@@ -149,7 +149,7 @@ public class Menu extends JFrame {
 					cancelBtn.addActionListener(new ActionListener() {						
 						public void actionPerformed(ActionEvent e) {
 							f1.dispose();
-							menuStart();
+							userTypeMenu();
 						}
 					});
 
@@ -177,7 +177,7 @@ public class Menu extends JFrame {
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f1.dispose();
 								loop = false;
-								menuStart();
+								userTypeMenu();
 							}
 						}
 					}
@@ -193,7 +193,7 @@ public class Menu extends JFrame {
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f1.dispose();
 								loop = false;
-								menuStart();
+								userTypeMenu();
 							}
 						}
 					}
@@ -229,7 +229,7 @@ public class Menu extends JFrame {
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f.dispose();
 								loop = false;
-								menuStart();
+								userTypeMenu();
 							}
 						}
 
@@ -246,7 +246,7 @@ public class Menu extends JFrame {
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f.dispose();
 								loop = false;
-								menuStart();
+								userTypeMenu();
 							}
 						}
 					}
@@ -457,7 +457,7 @@ public class Menu extends JFrame {
 									
 									public void actionPerformed(ActionEvent ae) {
 										f.dispose();
-										menuStart();
+										userTypeMenu();
 									}
 								});
 
@@ -599,7 +599,7 @@ public class Menu extends JFrame {
 									
 									public void actionPerformed(ActionEvent ae) {
 										f.dispose();
-										menuStart();
+										userTypeMenu();
 									}
 								});
 
@@ -1146,7 +1146,7 @@ public class Menu extends JFrame {
 			
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
-				menuStart();
+				userTypeMenu();
 			}
 		});
 	}
@@ -1168,7 +1168,7 @@ public class Menu extends JFrame {
 					"This customer does not have any accounts yet. \n An admin must create an account for this customer \n for them to be able to use customer functionality. ",
 					"Oops!", JOptionPane.INFORMATION_MESSAGE);
 			f.dispose();
-			menuStart();
+			userTypeMenu();
 		} else {
 			JPanel buttonPanel = new JPanel();
 			JPanel boxPanel = new JPanel();
@@ -1204,7 +1204,7 @@ public class Menu extends JFrame {
 				
 				public void actionPerformed(ActionEvent ae) {
 					f.dispose();
-					menuStart();
+					userTypeMenu();
 				}
 			});
 
@@ -1475,7 +1475,7 @@ public class Menu extends JFrame {
 						
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
-							menuStart();
+							userTypeMenu();
 						}
 					});
 				}

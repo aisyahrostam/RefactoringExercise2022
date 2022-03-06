@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
-
 import java.util.Date;
 
 public class Menu extends JFrame {
@@ -35,7 +34,6 @@ public class Menu extends JFrame {
 		f.setSize(400, 300);
 		f.setLocation(200, 200);
 		f.addWindowListener(new WindowAdapter() {
-			@Override
 			public void windowClosing(WindowEvent we) {
 				System.exit(0);
 			}
@@ -66,17 +64,15 @@ public class Menu extends JFrame {
 		content.add(continuePanel);
 
 		continueBtn.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent ae) {
 				String user = userType.getSelection().getActionCommand();
-
+				
 				if (user.equals("New Customer")) {
 					f.dispose();
 					f1 = new JFrame("Create New Customer");
 					f1.setSize(400, 300);
 					f1.setLocation(200, 200);
-					f1.addWindowListener(new WindowAdapter() {
-						@Override
+					f1.addWindowListener(new WindowAdapter() {						
 						public void windowClosing(WindowEvent we) {
 							System.exit(0);
 						}
@@ -106,7 +102,7 @@ public class Menu extends JFrame {
 					addBtn = new JButton("Add");
 
 					addBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent e) {
 
 							PPS = pPSTextField.getText();
@@ -118,7 +114,7 @@ public class Menu extends JFrame {
 							CustomerID = "ID" + PPS;
 
 							addBtn.addActionListener(new ActionListener() {
-								@Override
+								
 								public void actionPerformed(ActionEvent e) {
 									f1.dispose();
 
@@ -130,8 +126,8 @@ public class Menu extends JFrame {
 											JOptionPane.showMessageDialog(null, null,
 													"Password must be 7 charatcers long", JOptionPane.OK_OPTION);
 										} else {
-											 loop = false;
-										 }
+											loop = false;
+										}
 									}
 
 									ArrayList<CustomerAccount> accounts = new ArrayList<CustomerAccount>();
@@ -150,8 +146,7 @@ public class Menu extends JFrame {
 						}
 					});
 					JButton cancelBtn = new JButton("Cancel");
-					cancelBtn.addActionListener(new ActionListener() {
-						@Override
+					cancelBtn.addActionListener(new ActionListener() {						
 						public void actionPerformed(ActionEvent e) {
 							f1.dispose();
 							menuStart();
@@ -275,7 +270,7 @@ public class Menu extends JFrame {
 		f.setSize(400, 400);
 		f.setLocation(200, 200);
 		f.addWindowListener(new WindowAdapter() {
-			@Override
+			
 			public void windowClosing(WindowEvent we) {
 				System.exit(0);
 			}
@@ -341,7 +336,7 @@ public class Menu extends JFrame {
 		content.add(returnPanel);
 
 		bankChargesBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 
 				boolean loop = true;
@@ -385,7 +380,7 @@ public class Menu extends JFrame {
 							f.setSize(400, 300);
 							f.setLocation(200, 200);
 							f.addWindowListener(new WindowAdapter() {
-								@Override
+								
 								public void windowClosing(WindowEvent we) {
 									System.exit(0);
 								}
@@ -429,7 +424,7 @@ public class Menu extends JFrame {
 								}
 
 								continueBtn.addActionListener(new ActionListener() {
-									@Override
+								
 									public void actionPerformed(ActionEvent ae) {
 										String euro = "\u20ac";
 
@@ -459,7 +454,7 @@ public class Menu extends JFrame {
 								});
 
 								returnBtn.addActionListener(new ActionListener() {
-									@Override
+									
 									public void actionPerformed(ActionEvent ae) {
 										f.dispose();
 										menuStart();
@@ -475,7 +470,7 @@ public class Menu extends JFrame {
 		});
 
 		interestBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 
 				boolean loop = true;
@@ -519,7 +514,7 @@ public class Menu extends JFrame {
 							f.setSize(400, 300);
 							f.setLocation(200, 200);
 							f.addWindowListener(new WindowAdapter() {
-								@Override
+								
 								public void windowClosing(WindowEvent we) {
 									System.exit(0);
 								}
@@ -565,7 +560,7 @@ public class Menu extends JFrame {
 								}
 
 								continueBtn.addActionListener(new ActionListener() {
-									@Override
+									
 									public void actionPerformed(ActionEvent ae) {
 										String euro = "\u20ac";
 										double interest = 0;
@@ -585,7 +580,7 @@ public class Menu extends JFrame {
 												JOptionPane.showMessageDialog(f,
 														interest + "% interest applied. \n new balance = "
 																+ acc.getBalance() + euro,
-														"Success!", JOptionPane.INFORMATION_MESSAGE);
+																"Success!", JOptionPane.INFORMATION_MESSAGE);
 											}
 
 											else {
@@ -601,7 +596,7 @@ public class Menu extends JFrame {
 								});
 
 								returnBtn.addActionListener(new ActionListener() {
-									@Override
+									
 									public void actionPerformed(ActionEvent ae) {
 										f.dispose();
 										menuStart();
@@ -617,7 +612,7 @@ public class Menu extends JFrame {
 		});
 
 		editCustomerBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 
 				boolean loop = true;
@@ -665,7 +660,7 @@ public class Menu extends JFrame {
 					f.setSize(400, 300);
 					f.setLocation(200, 200);
 					f.addWindowListener(new WindowAdapter() {
-						@Override
+						
 						public void windowClosing(WindowEvent we) {
 							System.exit(0);
 						}
@@ -725,7 +720,7 @@ public class Menu extends JFrame {
 					f.setResizable(false);
 
 					saveButton.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 
 							customer.setFirstName(fNameTxtFld.getText());
@@ -740,7 +735,7 @@ public class Menu extends JFrame {
 					});
 
 					cancelBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
 
@@ -752,7 +747,7 @@ public class Menu extends JFrame {
 		});
 
 		summaryBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 
@@ -760,7 +755,7 @@ public class Menu extends JFrame {
 				f.setSize(400, 700);
 				f.setLocation(200, 200);
 				f.addWindowListener(new WindowAdapter() {
-					@Override
+					
 					public void windowClosing(WindowEvent we) {
 						System.exit(0);
 					}
@@ -804,7 +799,7 @@ public class Menu extends JFrame {
 				content.add(textPanel);
 
 				returnBtn.addActionListener(new ActionListener() {
-					@Override
+					
 					public void actionPerformed(ActionEvent ae) {
 						f.dispose();
 						admin();
@@ -814,7 +809,7 @@ public class Menu extends JFrame {
 		});
 
 		navigateBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 
@@ -891,7 +886,7 @@ public class Menu extends JFrame {
 					content.add(buttonPanel, BorderLayout.CENTER);
 					content.add(cancelPanel, BorderLayout.AFTER_LAST_LINE);
 					firstBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							position = 0;
 							fNameTxtFld.setText(customerList.get(0).getFirstName());
@@ -904,12 +899,11 @@ public class Menu extends JFrame {
 					});
 
 					previousBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 
-							if (position < 1) {
-								// don't do anything
-							} else {
+							if (position > 1) {
+							
 								position = position - 1;
 
 								fNameTxtFld.setText(customerList.get(position).getFirstName());
@@ -923,7 +917,7 @@ public class Menu extends JFrame {
 					});
 
 					nextBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 
 							if (position == customerList.size() - 1) {
@@ -943,7 +937,7 @@ public class Menu extends JFrame {
 					});
 
 					lastBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 
 							position = customerList.size() - 1;
@@ -958,7 +952,7 @@ public class Menu extends JFrame {
 					});
 
 					cancelBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							dispose();
 							admin();
@@ -972,7 +966,7 @@ public class Menu extends JFrame {
 		});
 
 		accountBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 
@@ -1063,7 +1057,7 @@ public class Menu extends JFrame {
 		});
 
 		deleteCustomerBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 				boolean found = true, loop = true;
 
@@ -1114,7 +1108,7 @@ public class Menu extends JFrame {
 		});
 
 		deleteAccountBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 				boolean found = true, loop = true;
 
@@ -1149,7 +1143,7 @@ public class Menu extends JFrame {
 
 		});
 		returnBtn.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 				menuStart();
@@ -1157,13 +1151,12 @@ public class Menu extends JFrame {
 		});
 	}
 
-	public void customer()
-	{	
+	public void customer() {
 		f = new JFrame("Customer Menu");
 		f.setSize(400, 300);
 		f.setLocation(200, 200);
 		f.addWindowListener(new WindowAdapter() {
-			@Override
+			
 			public void windowClosing(WindowEvent we) {
 				System.exit(0);
 			}
@@ -1208,7 +1201,7 @@ public class Menu extends JFrame {
 			content.add(buttonPanel);
 
 			returnBtn.addActionListener(new ActionListener() {
-				@Override
+				
 				public void actionPerformed(ActionEvent ae) {
 					f.dispose();
 					menuStart();
@@ -1216,7 +1209,7 @@ public class Menu extends JFrame {
 			});
 
 			continueBtn.addActionListener(new ActionListener() {
-				@Override
+				
 				public void actionPerformed(ActionEvent ae) {
 
 					f.dispose();
@@ -1225,7 +1218,7 @@ public class Menu extends JFrame {
 					f.setSize(400, 300);
 					f.setLocation(200, 200);
 					f.addWindowListener(new WindowAdapter() {
-						@Override
+						
 						public void windowClosing(WindowEvent we) {
 							System.exit(0);
 						}
@@ -1263,14 +1256,14 @@ public class Menu extends JFrame {
 					content.add(returnPanel);
 
 					statementBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
 							f = new JFrame("Customer Menu");
 							f.setSize(400, 600);
 							f.setLocation(200, 200);
 							f.addWindowListener(new WindowAdapter() {
-								@Override
+								
 								public void windowClosing(WindowEvent we) {
 									System.exit(0);
 								}
@@ -1307,7 +1300,7 @@ public class Menu extends JFrame {
 							content.setLayout(new GridLayout(1, 1));
 							content.add(textPanel);
 							returnBtn.addActionListener(new ActionListener() {
-								@Override
+								
 								public void actionPerformed(ActionEvent ae) {
 									f.dispose();
 									customer();
@@ -1317,7 +1310,7 @@ public class Menu extends JFrame {
 					});
 
 					lodgementBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							boolean loop = true;
 							boolean on = true;
@@ -1391,7 +1384,7 @@ public class Menu extends JFrame {
 					});
 
 					withdrawBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							boolean loop = true;
 							boolean on = true;
@@ -1479,7 +1472,7 @@ public class Menu extends JFrame {
 					});
 
 					returnBtn.addActionListener(new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
 							menuStart();

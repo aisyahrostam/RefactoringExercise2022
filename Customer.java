@@ -85,10 +85,6 @@ public class Customer {
 		this.password = password;
 	}
 
-	public void setAccounts(ArrayList<CustomerAccount> accounts) {
-		this.accounts = accounts;
-	}
-
 	public String toString() {
 		return "PPS number = " + this.PPS + "\n" + "Surname = " + this.surname + "\n" + "First Name = " + this.firstName
 				+ "\n" + "Date of Birth = " + this.DOB + "\n" + "Customer ID = " + this.customerID;

@@ -19,8 +19,4 @@ public class CustomerCurrentAccount extends CustomerAccount {
 		return this.atm;
 	}
 
-	public void setAtm(ATMCard atm) {
-		this.atm = atm;
-	}
-
 }

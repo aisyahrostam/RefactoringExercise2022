@@ -30,16 +30,9 @@ public class CustomerAccount {
 		return this.transactionList;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 
-	public void setTransactionList(ArrayList transactionList) {
-		this.transactionList = transactionList;
-	}
 
 }

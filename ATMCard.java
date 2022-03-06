@@ -15,14 +15,6 @@ public class ATMCard {
 		return this.pin;
 	}
 
-	public boolean getValid() {
-		return this.valid;
-	}
-
-	public void setPin(int pin) {
-		this.pin = pin;
-	}
-
 	public void setValid(boolean valid) {
 		this.valid = valid;
 	}

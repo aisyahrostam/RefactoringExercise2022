@@ -14,12 +14,4 @@ public class CustomerDepositAccount extends CustomerAccount {
 		this.interestRate = interestRate;
 	}
 
-	public double getInterestRate() {
-		return this.interestRate;
-	}
-
-	public void setInterestRate(double interestRate) {
-		this.interestRate = interestRate;
-	}
-
 }

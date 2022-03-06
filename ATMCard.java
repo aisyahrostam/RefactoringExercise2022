@@ -27,6 +27,7 @@ public class ATMCard {
 		this.valid = valid;
 	}
 
+	@Override
 	public String toString() {
 		return "Pin = " + this.pin;
 

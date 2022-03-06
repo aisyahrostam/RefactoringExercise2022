@@ -43,6 +43,7 @@ public class AccountTransaction {
 		this.amount = amount;
 	}
 
+	@Override
 	public String toString() {
 		return "\n" + "Date = " + this.date + "\n" + "Type = " + this.type + "\n" + "Amount = " + this.amount + "\n";
 

@@ -22,16 +22,14 @@ public class Menu extends JFrame {
 	private Customer customer = null;
 	private CustomerAccount acc = new CustomerAccount();
 	JFrame f, f1;
-	JLabel firstNameLabel, surnameLabel, pPPSLabel, dOBLabel;
-	JTextField firstNameTextField, surnameTextField, pPSTextField, dOBTextField;
-	JLabel customerIDLabel, passwordLabel;
-	JTextField customerIDTextField, passwordTextField;
+	JLabel fNameLbl, surnameLabel, pPPSLabel, dOBLabel, customerIDLabel, passwordLabel;
+	JTextField fNameTxtFld, surnameTextField, pPSTextField, dOBTextField, customerIDTextField, passwordTextField;
 	Container content;
 	Customer e;
 
 	JPanel panel2;
-	JButton add;
-	String PPS, firstName, surname, DOB, CustomerID;
+	JButton addBtn;
+	String PPS, fName, surname, DOB, CustomerID;
 
 	public static void main(String[] args) {
 		Menu driver = new Menu();
@@ -51,29 +49,29 @@ public class Menu extends JFrame {
 
 		JPanel userTypePanel = new JPanel();
 		final ButtonGroup userType = new ButtonGroup();
-		JRadioButton radioButton;
-		userTypePanel.add(radioButton = new JRadioButton("Existing Customer"));
-		radioButton.setActionCommand("Customer");
-		userType.add(radioButton);
+		JRadioButton radioBtn;
+		userTypePanel.add(radioBtn = new JRadioButton("Existing Customer"));
+		radioBtn.setActionCommand("Customer");
+		userType.add(radioBtn);
 
-		userTypePanel.add(radioButton = new JRadioButton("Administrator"));
-		radioButton.setActionCommand("Administrator");
-		userType.add(radioButton);
+		userTypePanel.add(radioBtn = new JRadioButton("Administrator"));
+		radioBtn.setActionCommand("Administrator");
+		userType.add(radioBtn);
 
-		userTypePanel.add(radioButton = new JRadioButton("New Customer"));
-		radioButton.setActionCommand("New Customer");
-		userType.add(radioButton);
+		userTypePanel.add(radioBtn = new JRadioButton("New Customer"));
+		radioBtn.setActionCommand("New Customer");
+		userType.add(radioBtn);
 
 		JPanel continuePanel = new JPanel();
-		JButton continueButton = new JButton("Continue");
-		continuePanel.add(continueButton);
+		JButton continueBtn = new JButton("Continue");
+		continuePanel.add(continueBtn);
 
 		Container content = f.getContentPane();
 		content.setLayout(new GridLayout(2, 1));
 		content.add(userTypePanel);
 		content.add(continuePanel);
 
-		continueButton.addActionListener(new ActionListener() {
+		continueBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				String user = userType.getSelection().getActionCommand();
 
@@ -90,17 +88,17 @@ public class Menu extends JFrame {
 					Container content = f1.getContentPane();
 					content.setLayout(new BorderLayout());
 
-					firstNameLabel = new JLabel("First Name:", SwingConstants.RIGHT);
+					fNameLbl = new JLabel("First Name:", SwingConstants.RIGHT);
 					surnameLabel = new JLabel("Surname:", SwingConstants.RIGHT);
 					pPPSLabel = new JLabel("PPS Number:", SwingConstants.RIGHT);
 					dOBLabel = new JLabel("Date of birth", SwingConstants.RIGHT);
-					firstNameTextField = new JTextField(20);
+					fNameTxtFld = new JTextField(20);
 					surnameTextField = new JTextField(20);
 					pPSTextField = new JTextField(20);
 					dOBTextField = new JTextField(20);
 					JPanel panel = new JPanel(new GridLayout(6, 2));
-					panel.add(firstNameLabel);
-					panel.add(firstNameTextField);
+					panel.add(fNameLbl);
+					panel.add(fNameTxtFld);
 					panel.add(surnameLabel);
 					panel.add(surnameTextField);
 					panel.add(pPPSLabel);
@@ -109,20 +107,20 @@ public class Menu extends JFrame {
 					panel.add(dOBTextField);
 
 					panel2 = new JPanel();
-					add = new JButton("Add");
+					addBtn = new JButton("Add");
 
-					add.addActionListener(new ActionListener() {
+					addBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 
 							PPS = pPSTextField.getText();
-							firstName = firstNameTextField.getText();
+							fName = fNameTxtFld.getText();
 							surname = surnameTextField.getText();
 							DOB = dOBTextField.getText();
 							password = "";
 
 							CustomerID = "ID" + PPS;
 
-							add.addActionListener(new ActionListener() {
+							addBtn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
 									f1.dispose();
 
@@ -130,17 +128,14 @@ public class Menu extends JFrame {
 									while (loop) {
 										password = JOptionPane.showInputDialog(f, "Enter 7 character Password;");
 
-										if (password.length() != 7)
-										{
+										if (password.length() != 7) {
 											JOptionPane.showMessageDialog(null, null,
 													"Password must be 7 charatcers long", JOptionPane.OK_OPTION);
-										} else {
-											loop = false;
 										}
 									}
 
 									ArrayList<CustomerAccount> accounts = new ArrayList<CustomerAccount>();
-									Customer customer = new Customer(PPS, surname, firstName, DOB, CustomerID, password,
+									Customer customer = new Customer(PPS, surname, fName, DOB, CustomerID, password,
 											accounts);
 
 									customerList.add(customer);
@@ -154,16 +149,16 @@ public class Menu extends JFrame {
 							});
 						}
 					});
-					JButton cancel = new JButton("Cancel");
-					cancel.addActionListener(new ActionListener() {
+					JButton cancelBtn = new JButton("Cancel");
+					cancelBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							f1.dispose();
 							menuStart();
 						}
 					});
 
-					panel2.add(add);
-					panel2.add(cancel);
+					panel2.add(addBtn);
+					panel2.add(cancelBtn);
 
 					content.add(panel, BorderLayout.CENTER);
 					content.add(panel2, BorderLayout.SOUTH);
@@ -173,13 +168,12 @@ public class Menu extends JFrame {
 				}
 
 				if (user.equals("Administrator")) {
-					boolean loop = true, loop2 = true;
+					boolean loop = true;
 					boolean cont = false;
 					while (loop) {
 						Object adminUsername = JOptionPane.showInputDialog(f, "Enter Administrator Username:");
 
-						if (!adminUsername.equals("admin"))
-						{
+						if (!adminUsername.equals("admin")) {
 							int reply = JOptionPane.showConfirmDialog(null, null, "Incorrect Username. Try again?",
 									JOptionPane.YES_NO_OPTION);
 							if (reply == JOptionPane.YES_OPTION) {
@@ -187,31 +181,24 @@ public class Menu extends JFrame {
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f1.dispose();
 								loop = false;
-								loop2 = false;
 								menuStart();
 							}
-						} else {
-							loop = false;
 						}
 					}
 
-					while (loop2) {
+					while (loop) {
 						Object adminPassword = JOptionPane.showInputDialog(f, "Enter Administrator Password;");
 
-						if (!adminPassword.equals("admin11"))
-						{
+						if (!adminPassword.equals("admin11")) {
 							int reply = JOptionPane.showConfirmDialog(null, null, "Incorrect Password. Try again?",
 									JOptionPane.YES_NO_OPTION);
 							if (reply == JOptionPane.YES_OPTION) {
 
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f1.dispose();
-								loop2 = false;
+								loop = false;
 								menuStart();
 							}
-						} else {
-							loop2 = false;
-							cont = true;
 						}
 					}
 
@@ -221,9 +208,9 @@ public class Menu extends JFrame {
 						admin();
 					}
 				}
-				
+
 				if (user.equals("Customer")) {
-					boolean loop = true, loop2 = true;
+					boolean loop = true;
 					boolean cont = false;
 					boolean found = false;
 					Customer customer = null;
@@ -232,8 +219,7 @@ public class Menu extends JFrame {
 
 						for (Customer aCustomer : customerList) {
 
-							if (aCustomer.getCustomerID().equals(customerID))
-							{
+							if (aCustomer.getCustomerID().equals(customerID)) {
 								found = true;
 								customer = aCustomer;
 							}
@@ -247,32 +233,25 @@ public class Menu extends JFrame {
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f.dispose();
 								loop = false;
-								loop2 = false;
 								menuStart();
 							}
-						} else {
-							loop = false;
 						}
 
 					}
 
-					while (loop2) {
+					while (loop) {
 						Object customerPassword = JOptionPane.showInputDialog(f, "Enter Customer Password;");
 
-						if (!customer.getPassword().equals(customerPassword))
-						{
+						if (!customer.getPassword().equals(customerPassword)) {
 							int reply = JOptionPane.showConfirmDialog(null, null, "Incorrect password. Try again?",
 									JOptionPane.YES_NO_OPTION);
 							if (reply == JOptionPane.YES_OPTION) {
 
 							} else if (reply == JOptionPane.NO_OPTION) {
 								f.dispose();
-								loop2 = false;
+								loop = false;
 								menuStart();
 							}
-						} else {
-							loop2 = false;
-							cont = true;
 						}
 					}
 
@@ -282,7 +261,7 @@ public class Menu extends JFrame {
 						customer(customer);
 					}
 				}
-				
+
 			}
 		});
 		f.setVisible(true);
@@ -302,48 +281,48 @@ public class Menu extends JFrame {
 		f.setVisible(true);
 
 		JPanel deleteCustomerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton deleteCustomer = new JButton("Delete Customer");
-		deleteCustomer.setPreferredSize(new Dimension(250, 20));
-		deleteCustomerPanel.add(deleteCustomer);
+		JButton deleteCustomerBtn = new JButton("Delete Customer");
+		deleteCustomerBtn.setPreferredSize(new Dimension(250, 20));
+		deleteCustomerPanel.add(deleteCustomerBtn);
 
 		JPanel deleteAccountPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton deleteAccount = new JButton("Delete Account");
-		deleteAccount.setPreferredSize(new Dimension(250, 20));
-		deleteAccountPanel.add(deleteAccount);
+		JButton deleteAccountBtn = new JButton("Delete Account");
+		deleteAccountBtn.setPreferredSize(new Dimension(250, 20));
+		deleteAccountPanel.add(deleteAccountBtn);
 
 		JPanel bankChargesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton bankChargesButton = new JButton("Apply Bank Charges");
-		bankChargesButton.setPreferredSize(new Dimension(250, 20));
-		bankChargesPanel.add(bankChargesButton);
+		JButton bankChargesBtn = new JButton("Apply Bank Charges");
+		bankChargesBtn.setPreferredSize(new Dimension(250, 20));
+		bankChargesPanel.add(bankChargesBtn);
 
 		JPanel interestPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton interestButton = new JButton("Apply Interest");
-		interestPanel.add(interestButton);
-		interestButton.setPreferredSize(new Dimension(250, 20));
+		JButton interestBtn = new JButton("Apply Interest");
+		interestPanel.add(interestBtn);
+		interestBtn.setPreferredSize(new Dimension(250, 20));
 
 		JPanel editCustomerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton editCustomerButton = new JButton("Edit existing Customer");
-		editCustomerPanel.add(editCustomerButton);
-		editCustomerButton.setPreferredSize(new Dimension(250, 20));
+		JButton editCustomerBtn = new JButton("Edit existing Customer");
+		editCustomerPanel.add(editCustomerBtn);
+		editCustomerBtn.setPreferredSize(new Dimension(250, 20));
 
 		JPanel navigatePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton navigateButton = new JButton("Navigate Customer Collection");
-		navigatePanel.add(navigateButton);
-		navigateButton.setPreferredSize(new Dimension(250, 20));
+		JButton navigateBtn = new JButton("Navigate Customer Collection");
+		navigatePanel.add(navigateBtn);
+		navigateBtn.setPreferredSize(new Dimension(250, 20));
 
 		JPanel summaryPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton summaryButton = new JButton("Display Summary Of All Accounts");
-		summaryPanel.add(summaryButton);
-		summaryButton.setPreferredSize(new Dimension(250, 20));
+		JButton summaryBtn = new JButton("Display Summary Of All Accounts");
+		summaryPanel.add(summaryBtn);
+		summaryBtn.setPreferredSize(new Dimension(250, 20));
 
 		JPanel accountPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton accountButton = new JButton("Add an Account to a Customer");
-		accountPanel.add(accountButton);
-		accountButton.setPreferredSize(new Dimension(250, 20));
+		JButton accountBtn = new JButton("Add an Account to a Customer");
+		accountPanel.add(accountBtn);
+		accountBtn.setPreferredSize(new Dimension(250, 20));
 
 		JPanel returnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton returnButton = new JButton("Exit Admin Menu");
-		returnPanel.add(returnButton);
+		JButton returnBtn = new JButton("Exit Admin Menu");
+		returnPanel.add(returnBtn);
 
 		JLabel label1 = new JLabel("Please select an option");
 
@@ -359,7 +338,7 @@ public class Menu extends JFrame {
 		content.add(deleteCustomerPanel);
 		content.add(returnPanel);
 
-		bankChargesButton.addActionListener(new ActionListener() {
+		bankChargesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 
 				boolean loop = true;
@@ -421,10 +400,10 @@ public class Menu extends JFrame {
 							boxPanel.add(box);
 
 							JPanel buttonPanel = new JPanel();
-							JButton continueButton = new JButton("Apply Charge");
-							JButton returnButton = new JButton("Return");
-							buttonPanel.add(continueButton);
-							buttonPanel.add(returnButton);
+							JButton continueBtn = new JButton("Apply Charge");
+							JButton returnBtn = new JButton("Return");
+							buttonPanel.add(continueBtn);
+							buttonPanel.add(returnBtn);
 							Container content = f.getContentPane();
 							content.setLayout(new GridLayout(2, 1));
 
@@ -445,7 +424,7 @@ public class Menu extends JFrame {
 									}
 								}
 
-								continueButton.addActionListener(new ActionListener() {
+								continueBtn.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent ae) {
 										String euro = "\u20ac";
 
@@ -474,7 +453,7 @@ public class Menu extends JFrame {
 									}
 								});
 
-								returnButton.addActionListener(new ActionListener() {
+								returnBtn.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent ae) {
 										f.dispose();
 										menuStart();
@@ -489,7 +468,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		interestButton.addActionListener(new ActionListener() {
+		interestBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 
 				boolean loop = true;
@@ -553,10 +532,10 @@ public class Menu extends JFrame {
 							boxPanel.add(label);
 							boxPanel.add(box);
 							JPanel buttonPanel = new JPanel();
-							JButton continueButton = new JButton("Apply Interest");
-							JButton returnButton = new JButton("Return");
-							buttonPanel.add(continueButton);
-							buttonPanel.add(returnButton);
+							JButton continueBtn = new JButton("Apply Interest");
+							JButton returnBtn = new JButton("Return");
+							buttonPanel.add(continueBtn);
+							buttonPanel.add(returnBtn);
 							Container content = f.getContentPane();
 							content.setLayout(new GridLayout(2, 1));
 
@@ -577,7 +556,7 @@ public class Menu extends JFrame {
 									}
 								}
 
-								continueButton.addActionListener(new ActionListener() {
+								continueBtn.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent ae) {
 										String euro = "\u20ac";
 										double interest = 0;
@@ -612,7 +591,7 @@ public class Menu extends JFrame {
 									}
 								});
 
-								returnButton.addActionListener(new ActionListener() {
+								returnBtn.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent ae) {
 										f.dispose();
 										menuStart();
@@ -627,7 +606,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		editCustomerButton.addActionListener(new ActionListener() {
+		editCustomerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 
 				boolean loop = true;
@@ -664,8 +643,6 @@ public class Menu extends JFrame {
 
 								admin();
 							}
-						} else {
-							loop = false;
 						}
 
 					}
@@ -682,13 +659,13 @@ public class Menu extends JFrame {
 						}
 					});
 
-					firstNameLabel = new JLabel("First Name:", SwingConstants.LEFT);
+					fNameLbl = new JLabel("First Name:", SwingConstants.LEFT);
 					surnameLabel = new JLabel("Surname:", SwingConstants.LEFT);
 					pPPSLabel = new JLabel("PPS Number:", SwingConstants.LEFT);
 					dOBLabel = new JLabel("Date of birth", SwingConstants.LEFT);
 					customerIDLabel = new JLabel("CustomerID:", SwingConstants.LEFT);
 					passwordLabel = new JLabel("Password:", SwingConstants.LEFT);
-					firstNameTextField = new JTextField(20);
+					fNameTxtFld = new JTextField(20);
 					surnameTextField = new JTextField(20);
 					pPSTextField = new JTextField(20);
 					dOBTextField = new JTextField(20);
@@ -699,8 +676,8 @@ public class Menu extends JFrame {
 
 					JPanel cancelPanel = new JPanel();
 
-					textPanel.add(firstNameLabel);
-					textPanel.add(firstNameTextField);
+					textPanel.add(fNameLbl);
+					textPanel.add(fNameTxtFld);
 					textPanel.add(surnameLabel);
 					textPanel.add(surnameTextField);
 					textPanel.add(pPPSLabel);
@@ -712,18 +689,17 @@ public class Menu extends JFrame {
 					textPanel.add(passwordLabel);
 					textPanel.add(passwordTextField);
 
-					firstNameTextField.setText(customer.getFirstName());
+					fNameTxtFld.setText(customer.getFirstName());
 					surnameTextField.setText(customer.getSurname());
 					pPSTextField.setText(customer.getPPS());
 					dOBTextField.setText(customer.getDOB());
 					customerIDTextField.setText(customer.getCustomerID());
 					passwordTextField.setText(customer.getPassword());
 
-
 					JButton saveButton = new JButton("Save");
-					JButton cancelButton = new JButton("Exit");
+					JButton cancelBtn = new JButton("Exit");
 
-					cancelPanel.add(cancelButton, BorderLayout.SOUTH);
+					cancelPanel.add(cancelBtn, BorderLayout.SOUTH);
 					cancelPanel.add(saveButton, BorderLayout.SOUTH);
 					Container content = f.getContentPane();
 					content.setLayout(new GridLayout(2, 1));
@@ -739,7 +715,7 @@ public class Menu extends JFrame {
 					saveButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 
-							customer.setFirstName(firstNameTextField.getText());
+							customer.setFirstName(fNameTxtFld.getText());
 							customer.setSurname(surnameTextField.getText());
 							customer.setPPS(pPSTextField.getText());
 							customer.setDOB(dOBTextField.getText());
@@ -750,7 +726,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					cancelButton.addActionListener(new ActionListener() {
+					cancelBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
 
@@ -761,7 +737,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		summaryButton.addActionListener(new ActionListener() {
+		summaryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 
@@ -778,8 +754,8 @@ public class Menu extends JFrame {
 				JLabel label1 = new JLabel("Summary of all transactions: ");
 
 				JPanel returnPanel = new JPanel();
-				JButton returnButton = new JButton("Return");
-				returnPanel.add(returnButton);
+				JButton returnBtn = new JButton("Return");
+				returnPanel.add(returnBtn);
 
 				JPanel textPanel = new JPanel();
 
@@ -788,19 +764,18 @@ public class Menu extends JFrame {
 				textArea.setEditable(false);
 				textPanel.add(label1, BorderLayout.NORTH);
 				textPanel.add(textArea, BorderLayout.CENTER);
-				textPanel.add(returnButton, BorderLayout.SOUTH);
+				textPanel.add(returnBtn, BorderLayout.SOUTH);
 
 				JScrollPane scrollPane = new JScrollPane(textArea);
 				textPanel.add(scrollPane);
 
-				for (int a = 0; a < customerList.size(); a++)
-				{
+				for (int a = 0; a < customerList.size(); a++) {
 					for (int b = 0; b < customerList.get(a).getAccounts().size(); b++) {
 						acc = customerList.get(a).getAccounts().get(b);
 						for (int c = 0; c < customerList.get(a).getAccounts().get(b).getTransactionList().size(); c++) {
 
 							textArea.append(acc.getTransactionList().get(c).toString());
-							
+
 						}
 					}
 				}
@@ -812,7 +787,7 @@ public class Menu extends JFrame {
 				content.setLayout(new GridLayout(1, 1));
 				content.add(textPanel);
 
-				returnButton.addActionListener(new ActionListener() {
+				returnBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ae) {
 						f.dispose();
 						admin();
@@ -821,7 +796,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		navigateButton.addActionListener(new ActionListener() {
+		navigateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 
@@ -830,7 +805,7 @@ public class Menu extends JFrame {
 					admin();
 				} else {
 
-					JButton first, previous, next, last, cancel;
+					JButton firstBtn, previousBtn, nextBtn, lastBtn, cancelBtn;
 					JPanel gridPanel, buttonPanel, cancelPanel;
 
 					Container content = getContentPane();
@@ -841,41 +816,41 @@ public class Menu extends JFrame {
 					gridPanel = new JPanel(new GridLayout(8, 2));
 					cancelPanel = new JPanel();
 
-					firstNameLabel = new JLabel("First Name:", SwingConstants.LEFT);
+					fNameLbl = new JLabel("First Name:", SwingConstants.LEFT);
 					surnameLabel = new JLabel("Surname:", SwingConstants.LEFT);
 					pPPSLabel = new JLabel("PPS Number:", SwingConstants.LEFT);
 					dOBLabel = new JLabel("Date of birth", SwingConstants.LEFT);
 					customerIDLabel = new JLabel("CustomerID:", SwingConstants.LEFT);
 					passwordLabel = new JLabel("Password:", SwingConstants.LEFT);
-					firstNameTextField = new JTextField(20);
+					fNameTxtFld = new JTextField(20);
 					surnameTextField = new JTextField(20);
 					pPSTextField = new JTextField(20);
 					dOBTextField = new JTextField(20);
 					customerIDTextField = new JTextField(20);
 					passwordTextField = new JTextField(20);
 
-					first = new JButton("First");
-					previous = new JButton("Previous");
-					next = new JButton("Next");
-					last = new JButton("Last");
-					cancel = new JButton("Cancel");
+					firstBtn = new JButton("First");
+					previousBtn = new JButton("Previous");
+					nextBtn = new JButton("Next");
+					lastBtn = new JButton("Last");
+					cancelBtn = new JButton("Cancel");
 
-					firstNameTextField.setText(customerList.get(0).getFirstName());
+					fNameTxtFld.setText(customerList.get(0).getFirstName());
 					surnameTextField.setText(customerList.get(0).getSurname());
 					pPSTextField.setText(customerList.get(0).getPPS());
 					dOBTextField.setText(customerList.get(0).getDOB());
 					customerIDTextField.setText(customerList.get(0).getCustomerID());
 					passwordTextField.setText(customerList.get(0).getPassword());
 
-					firstNameTextField.setEditable(false);
+					fNameTxtFld.setEditable(false);
 					surnameTextField.setEditable(false);
 					pPSTextField.setEditable(false);
 					dOBTextField.setEditable(false);
 					customerIDTextField.setEditable(false);
 					passwordTextField.setEditable(false);
 
-					gridPanel.add(firstNameLabel);
-					gridPanel.add(firstNameTextField);
+					gridPanel.add(fNameLbl);
+					gridPanel.add(fNameTxtFld);
 					gridPanel.add(surnameLabel);
 					gridPanel.add(surnameTextField);
 					gridPanel.add(pPPSLabel);
@@ -887,20 +862,20 @@ public class Menu extends JFrame {
 					gridPanel.add(passwordLabel);
 					gridPanel.add(passwordTextField);
 
-					buttonPanel.add(first);
-					buttonPanel.add(previous);
-					buttonPanel.add(next);
-					buttonPanel.add(last);
+					buttonPanel.add(firstBtn);
+					buttonPanel.add(previousBtn);
+					buttonPanel.add(nextBtn);
+					buttonPanel.add(lastBtn);
 
-					cancelPanel.add(cancel);
+					cancelPanel.add(cancelBtn);
 
 					content.add(gridPanel, BorderLayout.NORTH);
 					content.add(buttonPanel, BorderLayout.CENTER);
 					content.add(cancelPanel, BorderLayout.AFTER_LAST_LINE);
-					first.addActionListener(new ActionListener() {
+					firstBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							position = 0;
-							firstNameTextField.setText(customerList.get(0).getFirstName());
+							fNameTxtFld.setText(customerList.get(0).getFirstName());
 							surnameTextField.setText(customerList.get(0).getSurname());
 							pPSTextField.setText(customerList.get(0).getPPS());
 							dOBTextField.setText(customerList.get(0).getDOB());
@@ -909,7 +884,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					previous.addActionListener(new ActionListener() {
+					previousBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 
 							if (position < 1) {
@@ -917,7 +892,7 @@ public class Menu extends JFrame {
 							} else {
 								position = position - 1;
 
-								firstNameTextField.setText(customerList.get(position).getFirstName());
+								fNameTxtFld.setText(customerList.get(position).getFirstName());
 								surnameTextField.setText(customerList.get(position).getSurname());
 								pPSTextField.setText(customerList.get(position).getPPS());
 								dOBTextField.setText(customerList.get(position).getDOB());
@@ -927,7 +902,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					next.addActionListener(new ActionListener() {
+					nextBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 
 							if (position == customerList.size() - 1) {
@@ -935,7 +910,7 @@ public class Menu extends JFrame {
 							} else {
 								position = position + 1;
 
-								firstNameTextField.setText(customerList.get(position).getFirstName());
+								fNameTxtFld.setText(customerList.get(position).getFirstName());
 								surnameTextField.setText(customerList.get(position).getSurname());
 								pPSTextField.setText(customerList.get(position).getPPS());
 								dOBTextField.setText(customerList.get(position).getDOB());
@@ -946,12 +921,12 @@ public class Menu extends JFrame {
 						}
 					});
 
-					last.addActionListener(new ActionListener() {
+					lastBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 
 							position = customerList.size() - 1;
 
-							firstNameTextField.setText(customerList.get(position).getFirstName());
+							fNameTxtFld.setText(customerList.get(position).getFirstName());
 							surnameTextField.setText(customerList.get(position).getSurname());
 							pPSTextField.setText(customerList.get(position).getPPS());
 							dOBTextField.setText(customerList.get(position).getDOB());
@@ -960,7 +935,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					cancel.addActionListener(new ActionListener() {
+					cancelBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							dispose();
 							admin();
@@ -973,7 +948,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		accountButton.addActionListener(new ActionListener() {
+		accountBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 
@@ -1012,7 +987,7 @@ public class Menu extends JFrame {
 							}
 						} else {
 							loop = false;
-						
+
 							String[] choices = { "Current Account", "Deposit Account" };
 							String account = (String) JOptionPane.showInputDialog(null, "Please choose account type",
 									"Account Type", JOptionPane.QUESTION_MESSAGE, null, choices, choices[1]);
@@ -1063,7 +1038,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		deleteCustomer.addActionListener(new ActionListener() {
+		deleteCustomerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				boolean found = true, loop = true;
 
@@ -1113,7 +1088,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		deleteAccount.addActionListener(new ActionListener() {
+		deleteAccountBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				boolean found = true, loop = true;
 
@@ -1141,17 +1116,13 @@ public class Menu extends JFrame {
 
 							admin();
 						}
-					} else {
-						// Here I would make the user select a an account to delete from a combo box. If
-						// the account had a balance of 0 then it would be deleted. (I do not have time
-						// to do this)
 					}
 
 				}
 			}
 
 		});
-		returnButton.addActionListener(new ActionListener() {
+		returnBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				f.dispose();
 				menuStart();
@@ -1185,10 +1156,10 @@ public class Menu extends JFrame {
 			JLabel label = new JLabel("Select Account:");
 			labelPanel.add(label);
 
-			JButton returnButton = new JButton("Return");
-			buttonPanel.add(returnButton);
-			JButton continueButton = new JButton("Continue");
-			buttonPanel.add(continueButton);
+			JButton returnBtn = new JButton("Return");
+			buttonPanel.add(returnBtn);
+			JButton continueBtn = new JButton("Continue");
+			buttonPanel.add(continueBtn);
 
 			JComboBox<String> box = new JComboBox<String>();
 			for (int i = 0; i < e.getAccounts().size(); i++) {
@@ -1208,14 +1179,14 @@ public class Menu extends JFrame {
 			content.add(boxPanel);
 			content.add(buttonPanel);
 
-			returnButton.addActionListener(new ActionListener() {
+			returnBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
 					f.dispose();
 					menuStart();
 				}
 			});
 
-			continueButton.addActionListener(new ActionListener() {
+			continueBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
 
 					f.dispose();
@@ -1231,24 +1202,24 @@ public class Menu extends JFrame {
 					f.setVisible(true);
 
 					JPanel statementPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-					JButton statementButton = new JButton("Display Bank Statement");
-					statementButton.setPreferredSize(new Dimension(250, 20));
+					JButton statementBtn = new JButton("Display Bank Statement");
+					statementBtn.setPreferredSize(new Dimension(250, 20));
 
-					statementPanel.add(statementButton);
+					statementPanel.add(statementBtn);
 
 					JPanel lodgementPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-					JButton lodgementButton = new JButton("Lodge money into account");
-					lodgementPanel.add(lodgementButton);
-					lodgementButton.setPreferredSize(new Dimension(250, 20));
+					JButton lodgementBtn = new JButton("Lodge money into account");
+					lodgementPanel.add(lodgementBtn);
+					lodgementBtn.setPreferredSize(new Dimension(250, 20));
 
 					JPanel withdrawalPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-					JButton withdrawButton = new JButton("Withdraw money from account");
-					withdrawalPanel.add(withdrawButton);
-					withdrawButton.setPreferredSize(new Dimension(250, 20));
+					JButton withdrawBtn = new JButton("Withdraw money from account");
+					withdrawalPanel.add(withdrawBtn);
+					withdrawBtn.setPreferredSize(new Dimension(250, 20));
 
 					JPanel returnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-					JButton returnButton = new JButton("Exit Customer Menu");
-					returnPanel.add(returnButton);
+					JButton returnBtn = new JButton("Exit Customer Menu");
+					returnPanel.add(returnBtn);
 
 					JLabel label1 = new JLabel("Please select an option");
 
@@ -1260,7 +1231,7 @@ public class Menu extends JFrame {
 					content.add(withdrawalPanel);
 					content.add(returnPanel);
 
-					statementButton.addActionListener(new ActionListener() {
+					statementBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
 							f = new JFrame("Customer Menu");
@@ -1276,8 +1247,8 @@ public class Menu extends JFrame {
 							JLabel label1 = new JLabel("Summary of account transactions: ");
 
 							JPanel returnPanel = new JPanel();
-							JButton returnButton = new JButton("Return");
-							returnPanel.add(returnButton);
+							JButton returnBtn = new JButton("Return");
+							returnPanel.add(returnBtn);
 
 							JPanel textPanel = new JPanel();
 
@@ -1286,7 +1257,7 @@ public class Menu extends JFrame {
 							textArea.setEditable(false);
 							textPanel.add(label1, BorderLayout.NORTH);
 							textPanel.add(textArea, BorderLayout.CENTER);
-							textPanel.add(returnButton, BorderLayout.SOUTH);
+							textPanel.add(returnBtn, BorderLayout.SOUTH);
 
 							JScrollPane scrollPane = new JScrollPane(textArea);
 							textPanel.add(scrollPane);
@@ -1302,7 +1273,7 @@ public class Menu extends JFrame {
 							Container content = f.getContentPane();
 							content.setLayout(new GridLayout(1, 1));
 							content.add(textPanel);
-							returnButton.addActionListener(new ActionListener() {
+							returnBtn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent ae) {
 									f.dispose();
 									customer(e);
@@ -1311,7 +1282,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					lodgementButton.addActionListener(new ActionListener() {
+					lodgementBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							boolean loop = true;
 							boolean on = true;
@@ -1384,7 +1355,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					withdrawButton.addActionListener(new ActionListener() {
+					withdrawBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							boolean loop = true;
 							boolean on = true;
@@ -1452,7 +1423,7 @@ public class Menu extends JFrame {
 
 								String euro = "\u20ac";
 								acc.setBalance(acc.getBalance() - withdraw);
-								
+
 								Date date = new Date();
 								String date2 = date.toString();
 
@@ -1471,7 +1442,7 @@ public class Menu extends JFrame {
 						}
 					});
 
-					returnButton.addActionListener(new ActionListener() {
+					returnBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent ae) {
 							f.dispose();
 							menuStart();
@@ -1482,8 +1453,7 @@ public class Menu extends JFrame {
 		}
 	}
 
-	public static boolean isNumeric(String str)
-	{
+	public static boolean isNumeric(String str) {
 		try {
 			double d = Double.parseDouble(str);
 		} catch (NumberFormatException nfe) {
